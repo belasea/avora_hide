@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In | AvoraHide</title>
+<meta name="description" content="Sign in to your AvoraHide account to track orders, manage your wishlist, and checkout faster.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container-xl">
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo">Avora<span>Hide</span></a>
+      <nav class="main-nav"></nav>
+      <div class="header-actions">
+        <a href="index.html" class="btn-link-underline"><i class="bi bi-arrow-left me-2"></i>Back to Store</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="auth-wrap">
+  <div class="row g-0 w-100">
+    <div class="col-lg-6 d-none d-lg-block">
+      <div class="auth-visual h-100" style="background-image:url('https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=1200&q=80');">
+        <div class="av-content">
+          <div class="eyebrow" style="color:var(--color-tan);">Welcome Back</div>
+          <h2 style="color:#fff;">Your account, your craftsmanship archive.</h2>
+          <p style="color:rgba(248,245,240,0.85);">Track orders, revisit your wishlist, and check out faster next time.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="auth-form-col h-100">
+        <div class="auth-form-box">
+          <h2>Sign In</h2>
+          <p class="sub">Welcome back to AvoraHide. Please enter your details.</p>
+
+          <form id="loginForm" novalidate>
+            <div class="mb-3">
+              <label class="form-label-custom">Email Address</label>
+              <input type="email" class="form-control-custom" name="email" required>
+              <div class="invalid-feedback-custom">Enter a valid email address.</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label-custom">Password</label>
+              <input type="password" class="form-control-custom" name="password" required minlength="6">
+              <div class="invalid-feedback-custom">Password must be at least 6 characters.</div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <label class="form-check-custom mb-0"><input type="checkbox"> Remember me</label>
+              <a href="#" class="small text-cognac">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn btn-primary-dark w-100">Sign In</button>
+          </form>
+
+          <div class="divider-or">or continue with</div>
+          <button class="social-auth-btn"><i class="bi bi-google"></i> Continue with Google</button>
+          <button class="social-auth-btn"><i class="bi bi-facebook"></i> Continue with Facebook</button>
+
+          <p class="text-center text-muted-custom mt-4 mb-0">Don't have an account? <a href="register.html" class="text-cognac fw-semibold">Create one</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-stack"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/wishlist.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  var email = this.querySelector('[name="email"]');
+  var password = this.querySelector('[name="password"]');
+  var emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
+  var passValid = password.value.length >= 6;
+  email.classList.toggle("is-invalid", !emailValid);
+  password.classList.toggle("is-invalid", !passValid);
+  if (emailValid && passValid) {
+    try { localStorage.setItem("avorahide_user", JSON.stringify({ email: email.value, name: email.value.split("@")[0] })); } catch (err) {}
+    showToast("Signed in successfully!", "success");
+    setTimeout(function () { window.location.href = "account.html"; }, 900);
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout | AvoraHide</title>
+<meta name="description" content="Complete your AvoraHide order securely.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container-xl">
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo">Avora<span>Hide</span></a>
+      <nav class="main-nav">
+        <span class="text-muted-custom small"><i class="bi bi-lock-fill me-2"></i>Secure Checkout</span>
+      </nav>
+      <div class="header-actions">
+        <a href="cart.html" class="btn-link-underline"><i class="bi bi-arrow-left me-2"></i>Back to Cart</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section-pad">
+  <div class="container-xl">
+    <div id="checkoutHasItems" class="row g-5">
+      <div class="col-lg-7">
+        <form id="checkoutForm" novalidate>
+          <div class="checkout-step-box">
+            <h5><span class="step-num">1</span> Customer Information</h5>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label-custom">First Name</label>
+                <input type="text" class="form-control-custom" name="firstName" required>
+                <div class="invalid-feedback-custom">First name is required.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label-custom">Last Name</label>
+                <input type="text" class="form-control-custom" name="lastName" required>
+                <div class="invalid-feedback-custom">Last name is required.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label-custom">Email Address</label>
+                <input type="email" class="form-control-custom" name="email" required>
+                <div class="invalid-feedback-custom">Enter a valid email address.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label-custom">Phone Number</label>
+                <input type="tel" class="form-control-custom" name="phone" required>
+                <div class="invalid-feedback-custom">Phone number is required.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="checkout-step-box">
+            <h5><span class="step-num">2</span> Shipping Address</h5>
+            <div class="row g-3">
+              <div class="col-12">
+                <label class="form-label-custom">Street Address</label>
+                <input type="text" class="form-control-custom" name="address" required>
+                <div class="invalid-feedback-custom">Street address is required.</div>
+              </div>
+              <div class="col-md-5">
+                <label class="form-label-custom">City</label>
+                <input type="text" class="form-control-custom" name="city" required>
+                <div class="invalid-feedback-custom">City is required.</div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label-custom">State / Region</label>
+                <input type="text" class="form-control-custom" name="state" required>
+                <div class="invalid-feedback-custom">State is required.</div>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label-custom">ZIP Code</label>
+                <input type="text" class="form-control-custom" name="zip" required>
+                <div class="invalid-feedback-custom">ZIP code is required.</div>
+              </div>
+              <div class="col-12">
+                <label class="form-label-custom">Country</label>
+                <select class="form-select-custom" name="country" required>
+                  <option value="">Select a country</option>
+                  <option>United States</option>
+                  <option>Canada</option>
+                  <option>United Kingdom</option>
+                  <option>Australia</option>
+                  <option>Bangladesh</option>
+                </select>
+                <div class="invalid-feedback-custom">Please select a country.</div>
+              </div>
+              <div class="col-12">
+                <label class="form-check-custom"><input type="checkbox" name="sameBilling" checked> Billing address is the same as shipping address</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="checkout-step-box">
+            <h5><span class="step-num">3</span> Delivery Method</h5>
+            <label class="delivery-option selected"><span><input type="radio" name="delivery" value="standard" checked> <strong>Standard Delivery</strong> <span class="text-muted-custom small d-block">5-7 business days</span></span><span>Free</span></label>
+            <label class="delivery-option"><span><input type="radio" name="delivery" value="express"> <strong>Express Delivery</strong> <span class="text-muted-custom small d-block">2-3 business days</span></span><span>৳18.00</span></label>
+            <label class="delivery-option"><span><input type="radio" name="delivery" value="overnight"> <strong>Overnight Delivery</strong> <span class="text-muted-custom small d-block">Next business day</span></span><span>৳35.00</span></label>
+          </div>
+
+          <div class="checkout-step-box">
+            <h5><span class="step-num">4</span> Payment Method</h5>
+            <label class="payment-option selected"><span><input type="radio" name="payment" value="card" checked> <i class="bi bi-credit-card me-2"></i>Credit / Debit Card</span><span><i class="bi bi-visa fs-5"></i></span></label>
+            <label class="payment-option"><span><input type="radio" name="payment" value="paypal"> <i class="bi bi-paypal me-2"></i>PayPal</span></label>
+            <label class="payment-option"><span><input type="radio" name="payment" value="cod"> <i class="bi bi-cash-coin me-2"></i>Cash on Delivery</span></label>
+
+            <div class="row g-3 mt-2" id="cardFieldsGroup">
+              <div class="col-12">
+                <label class="form-label-custom">Card Number</label>
+                <input type="text" class="form-control-custom" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                <div class="invalid-feedback-custom">Enter a valid 16-digit card number.</div>
+              </div>
+              <div class="col-md-8">
+                <label class="form-label-custom">Expiry Date</label>
+                <input type="text" class="form-control-custom" name="cardExpiry" placeholder="MM/YY" maxlength="5">
+                <div class="invalid-feedback-custom">Enter expiry as MM/YY.</div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label-custom">CVV</label>
+                <input type="text" class="form-control-custom" name="cardCvv" placeholder="123" maxlength="4">
+                <div class="invalid-feedback-custom">Enter a valid CVV.</div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="order-summary-box">
+          <h5>Order Summary</h5>
+          <div id="checkoutMiniItems"></div>
+          <div class="summary-line mt-3"><span>Subtotal</span><span id="coSubtotal">৳0.00</span></div>
+          <div class="summary-line"><span>Shipping</span><span id="coShipping">৳0.00</span></div>
+          <div class="summary-line total"><span>Total</span><span id="coTotal">৳0.00</span></div>
+          <button class="btn btn-primary-dark w-100 mt-4" id="placeOrderBtn"><i class="bi bi-shield-lock me-2"></i>Place Order</button>
+          <p class="text-center text-muted-custom small mt-3 mb-0">This is a demo checkout. No real payment will be processed.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-state" id="checkoutEmptyState" style="display:none;">
+      <i class="bi bi-bag-x"></i>
+      <h4>Your cart is empty</h4>
+      <p>Add a few items to your cart before checking out.</p>
+      <a href="shop.html" class="btn btn-primary-dark">Start Shopping</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container-xl py-4">
+    <div class="footer-bottom border-0" style="padding:0;">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <span>&copy; 2026 AvoraHide. All rights reserved.</span>
+        <div class="payment-icons">
+          <span><i class="bi bi-credit-card"></i></span>
+          <span><i class="bi bi-paypal"></i></span>
+          <span><i class="bi bi-apple"></i></span>
+          <span><i class="bi bi-google"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-stack"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/wishlist.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+(function () {
+  var items = getCartDetailed();
+  if (!items.length) {
+    document.getElementById("checkoutHasItems").style.display = "none";
+    document.getElementById("checkoutEmptyState").style.display = "block";
+    return;
+  }
+
+  document.getElementById("checkoutMiniItems").innerHTML = items.map(function (line) {
+    var p = line.product;
+    return '<div class="checkout-mini-item">' +
+      '<img src="' + p.img[0].card + '" alt="' + p.name + '">' +
+      '<div><div class="cmi-name">' + p.name + '</div><div class="cmi-meta">Qty ' + line.qty + (line.color ? " · " + COLORS[line.color].name : "") + '</div></div>' +
+      '<div class="cmi-price">' + formatPrice(line.lineTotal) + '</div>' +
+    '</div>';
+  }).join("");
+
+  var subtotal = getCartSubtotal();
+  var deliveryFees = { standard: 0, express: 18, overnight: 35 };
+
+  function updateTotals() {
+    var selectedDelivery = document.querySelector('input[name="delivery"]:checked').value;
+    var shipping = subtotal >= FREE_SHIPPING_THRESHOLD && selectedDelivery === "standard" ? 0 : deliveryFees[selectedDelivery];
+    document.getElementById("coSubtotal").textContent = formatPrice(subtotal);
+    document.getElementById("coShipping").textContent = shipping === 0 ? "Free" : formatPrice(shipping);
+    document.getElementById("coTotal").textContent = formatPrice(subtotal + shipping);
+  }
+
+  document.querySelectorAll('input[name="delivery"]').forEach(function (radio) {
+    radio.addEventListener("change", function () {
+      document.querySelectorAll(".delivery-option").forEach(function (el) { el.classList.remove("selected"); });
+      radio.closest(".delivery-option").classList.add("selected");
+      updateTotals();
+    });
+  });
+  document.querySelectorAll('input[name="payment"]').forEach(function (radio) {
+    radio.addEventListener("change", function () {
+      document.querySelectorAll(".payment-option").forEach(function (el) { el.classList.remove("selected"); });
+      radio.closest(".payment-option").classList.add("selected");
+      document.getElementById("cardFieldsGroup").style.display = radio.value === "card" ? "flex" : "none";
+    });
+  });
+
+  updateTotals();
+
+  var form = document.getElementById("checkoutForm");
+
+  function validateField(field) {
+    var valid = field.checkValidity();
+    if (field.name === "email" && field.value) {
+      valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value);
+    }
+    if (field.name === "cardNumber" && document.querySelector('input[name="payment"]:checked').value === "card") {
+      valid = /^[\d\s]{16,19}$/.test(field.value);
+    }
+    if (field.name === "cardExpiry" && document.querySelector('input[name="payment"]:checked').value === "card") {
+      valid = /^(0[1-9]|1[0-2])\/\d{2}$/.test(field.value);
+    }
+    if (field.name === "cardCvv" && document.querySelector('input[name="payment"]:checked').value === "card") {
+      valid = /^\d{3,4}$/.test(field.value);
+    }
+    field.classList.toggle("is-invalid", !valid);
+    return valid;
+  }
+
+  form.querySelectorAll("input[required], select[required]").forEach(function (field) {
+    field.addEventListener("blur", function () { validateField(field); });
+  });
+  ["cardNumber", "cardExpiry", "cardCvv"].forEach(function (n) {
+    var f = form.querySelector('[name="' + n + '"]');
+    if (f) f.addEventListener("blur", function () { validateField(f); });
+  });
+
+  document.getElementById("placeOrderBtn").addEventListener("click", function () {
+    var fields = Array.from(form.querySelectorAll("input[required], select[required]"));
+    if (document.querySelector('input[name="payment"]:checked').value === "card") {
+      fields.push(form.querySelector('[name="cardNumber"]'), form.querySelector('[name="cardExpiry"]'), form.querySelector('[name="cardCvv"]'));
+    }
+    var allValid = fields.every(function (f) { return validateField(f); });
+    if (!allValid) {
+      showToast("Please correct the highlighted fields.", "error");
+      fields.find(function (f) { return f.classList.contains("is-invalid"); }).scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
+    var orderId = "AVH" + Math.floor(100000 + Math.random() * 900000);
+    try {
+      localStorage.setItem("avorahide_last_order", JSON.stringify({ id: orderId, items: getCartDetailed().map(function(l){return {name:l.product.name, qty:l.qty, total:l.lineTotal};}), total: document.getElementById("coTotal").textContent, date: new Date().toISOString() }));
+    } catch (e) {}
+    clearCart();
+    showToast("Order " + orderId + " placed successfully!", "success");
+    setTimeout(function () { window.location.href = "orders.html?confirmed=" + orderId; }, 1200);
+  });
+})();
+</script>
+</body>
+</html>

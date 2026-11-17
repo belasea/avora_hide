@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Category | AvoraHide</title>
+<meta name="description" content="Shop AvoraHide's leather product categories — wallets, bags, belts, backpacks, jackets, shoes, and accessories.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="announcement-bar">
+  <div class="container-xl position-relative">
+    <div class="ann-track">
+      <span class="ann-item"><i class="bi bi-truck"></i> Free Shipping on Orders Over ৳150</span>
+      <span class="ann-item"><i class="bi bi-gift"></i> Complimentary Gift Wrapping Available</span>
+      <span class="ann-item"><i class="bi bi-shield-check"></i> Lifetime Craftsmanship Guarantee</span>
+    </div>
+    <button class="ann-close" aria-label="Close announcement"><i class="bi bi-x-lg"></i></button>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container-xl">
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo">Avora<span>Hide</span></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <div class="dropdown">
+          <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories <i class="bi bi-chevron-down small"></i></a>
+          <ul class="dropdown-menu" id="categoryDropdownMenu"></ul>
+        </div>
+        <a href="shop.html?sort=newest">New Arrivals</a>
+        <a href="shop.html?sort=best-selling">Best Sellers</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="btn-icon-circle js-search-open" aria-label="Search"><i class="bi bi-search"></i></button>
+        <a href="account.html" class="btn-icon-circle" aria-label="Account"><i class="bi bi-person"></i></a>
+        <a href="wishlist.html" class="btn-icon-circle" aria-label="Wishlist"><i class="bi bi-heart"></i><span class="badge-count js-wishlist-count">0</span></a>
+        <a href="cart.html" class="btn-icon-circle" aria-label="Cart"><i class="bi bi-bag"></i><span class="badge-count js-cart-count">0</span></a>
+        <button class="mobile-nav-toggle" aria-label="Open menu"><i class="bi bi-list"></i></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="nav-overlay"></div>
+<div class="mobile-nav-panel">
+  <div class="mnp-head">
+    <span class="brand-logo" style="font-size:1.3rem;">Avora<span>Hide</span></span>
+    <button class="mnp-close btn-icon-circle" aria-label="Close menu"><i class="bi bi-x-lg"></i></button>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="shop.html?sort=newest">New Arrivals</a></li>
+    <li><a href="shop.html?sort=best-selling">Best Sellers</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="account.html">My Account</a></li>
+    <li><a href="wishlist.html">Wishlist</a></li>
+    <li><a href="cart.html">Cart</a></li>
+  </ul>
+</div>
+
+<div class="search-overlay">
+  <button class="search-close" aria-label="Close search"><i class="bi bi-x-lg"></i></button>
+  <div class="search-box">
+    <input type="text" placeholder="Search for wallets, bags, belts..." aria-label="Search products">
+    <div class="search-results"></div>
+  </div>
+</div>
+
+<div class="page-header-banner" id="categoryBanner">
+  <div class="inner">
+    <h1 id="categoryHeading">Category</h1>
+    <div class="breadcrumb-custom"><a href="index.html">Home</a><span>/</span><a href="shop.html">Shop</a><span>/</span><span id="categoryCrumb">Category</span></div>
+  </div>
+</div>
+
+<section class="section-pad">
+  <div class="container-xl">
+    <button class="btn btn-outline-dark-custom btn-sm mobile-filter-toggle mb-4" id="mobileFilterToggle"><i class="bi bi-sliders me-2"></i>Filters</button>
+
+    <div class="row g-5">
+      <div class="col-lg-3 filter-sidebar-col" id="filterSidebarCol">
+        <div class="filter-sidebar">
+          <button class="btn-close float-end d-lg-none" id="closeMobileFilter" aria-label="Close filters"></button>
+          <div class="filter-group">
+            <h6>Other Categories</h6>
+            <div id="categoryFilterList"></div>
+          </div>
+          <div class="filter-group">
+            <h6>Price Range</h6>
+            <input type="range" class="form-range" id="priceRange" min="0" max="500" step="10" value="500">
+            <div class="d-flex justify-content-between small text-muted-custom">
+              <span>৳0</span>
+              <span id="priceRangeValue">৳500</span>
+            </div>
+          </div>
+          <div class="filter-group">
+            <h6>Color</h6>
+            <div class="color-swatch-filter" id="colorFilterList"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-9">
+        <div class="toolbar-shop">
+          <span class="text-muted-custom small" id="resultsCount">Showing all products</span>
+          <select class="sort-select" id="sortSelect">
+            <option value="featured">Featured</option>
+            <option value="newest">Newest</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="best-selling">Best Selling</option>
+          </select>
+        </div>
+        <div class="row g-4" id="shopProductGrid"></div>
+        <div class="pagination-custom" id="shopPagination"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container-xl section-pad">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div class="footer-brand">Avora<span style="color:var(--color-tan);">Hide</span></div>
+        <p>Premium handcrafted leather goods — wallets, bags, belts, jackets and more, made to be lived in and passed on.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+          <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6>Shop</h6>
+        <ul>
+          <li><a href="category.html?cat=wallets">Wallets</a></li>
+          <li><a href="category.html?cat=bags">Bags</a></li>
+          <li><a href="category.html?cat=belts">Belts</a></li>
+          <li><a href="category.html?cat=backpacks">Backpacks</a></li>
+          <li><a href="category.html?cat=accessories">Accessories</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6>Support</h6>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="orders.html">Order Tracking</a></li>
+          <li><a href="terms-conditions.html">Returns &amp; Refunds</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6>Company</h6>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6>Contact</h6>
+        <ul class="footer-contact">
+          <li><i class="bi bi-geo-alt"></i><span>221 Leather Lane, Portland, OR</span></li>
+          <li><i class="bi bi-telephone"></i><span>+1 (503) 555-0142</span></li>
+          <li><i class="bi bi-envelope"></i><span>hello@avorahide.com</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container-xl d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <span>&copy; 2026 AvoraHide. All rights reserved.</span>
+      <div class="payment-icons">
+        <span><i class="bi bi-credit-card"></i></span>
+        <span><i class="bi bi-paypal"></i></span>
+        <span><i class="bi bi-apple"></i></span>
+        <span><i class="bi bi-google"></i></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+<div class="toast-stack"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/wishlist.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var catSlug = params.get("cat") || "wallets";
+  var cat = CATEGORIES.find(function (c) { return c.slug === catSlug; }) || CATEGORIES[0];
+
+  document.title = cat.name + " | AvoraHide";
+  document.getElementById("categoryHeading").textContent = cat.name;
+  document.getElementById("categoryCrumb").textContent = cat.name;
+  document.getElementById("categoryBanner").style.backgroundImage = "url('" + cat.image.replace("w=600", "w=1600") + "')";
+
+  document.getElementById("categoryDropdownMenu").innerHTML = CATEGORIES.map(function (c) {
+    return '<li><a class="dropdown-item' + (c.slug === catSlug ? " active" : "") + '" href="category.html?cat=' + c.slug + '">' + c.name + '</a></li>';
+  }).join("");
+
+  document.getElementById("categoryFilterList").innerHTML = CATEGORIES.filter(function(c){return c.slug !== catSlug;}).map(function (c) {
+    return '<label class="form-check-custom"><input type="checkbox" value="' + c.slug + '" class="cat-filter-cb"> ' + c.name + '</label>';
+  }).join("");
+
+  document.getElementById("colorFilterList").innerHTML = Object.keys(COLORS).map(function (key) {
+    return '<button type="button" class="color-filter-dot" data-color="' + key + '" style="background:' + COLORS[key].hex + '" title="' + COLORS[key].name + '"></button>';
+  }).join("");
+
+  var state = { categories: [catSlug], sort: "featured", maxPrice: 500, colors: [], page: 1 };
+  var PER_PAGE = 9;
+
+  function render() {
+    var list = filterProducts({ categories: state.categories, sort: state.sort, maxPrice: state.maxPrice, colors: state.colors });
+    var result = paginate(list, state.page, PER_PAGE);
+    document.getElementById("shopProductGrid").innerHTML = result.items.map(function (p) {
+      return '<div class="col-6 col-md-4">' + productCardHtml(p) + '</div>';
+    }).join("") || '<div class="empty-state w-100"><i class="bi bi-search"></i><h4>No products found</h4><p>Try adjusting your filters.</p></div>';
+
+    document.getElementById("resultsCount").textContent = "Showing " + result.items.length + " of " + result.total + " products";
+
+    var pagHtml = "";
+    pagHtml += '<button ' + (state.page <= 1 ? "disabled" : "") + ' data-page="' + (state.page - 1) + '"><i class="bi bi-chevron-left"></i></button>';
+    for (var i = 1; i <= result.totalPages; i++) {
+      pagHtml += '<button class="' + (i === state.page ? "active" : "") + '" data-page="' + i + '">' + i + '</button>';
+    }
+    pagHtml += '<button ' + (state.page >= result.totalPages ? "disabled" : "") + ' data-page="' + (state.page + 1) + '"><i class="bi bi-chevron-right"></i></button>';
+    document.getElementById("shopPagination").innerHTML = pagHtml;
+  }
+
+  document.getElementById("shopPagination").addEventListener("click", function (e) {
+    var btn = e.target.closest("button");
+    if (!btn || btn.disabled) return;
+    state.page = parseInt(btn.dataset.page, 10);
+    render();
+    window.scrollTo({ top: document.querySelector(".toolbar-shop").offsetTop - 120, behavior: "smooth" });
+  });
+
+  document.getElementById("sortSelect").addEventListener("change", function (e) {
+    state.sort = e.target.value;
+    state.page = 1;
+    render();
+  });
+
+  document.querySelectorAll(".cat-filter-cb").forEach(function (cb) {
+    cb.addEventListener("change", function () {
+      var extra = Array.from(document.querySelectorAll(".cat-filter-cb:checked")).map(function (c) { return c.value; });
+      state.categories = [catSlug].concat(extra);
+      state.page = 1;
+      render();
+    });
+  });
+
+  document.getElementById("priceRange").addEventListener("input", function (e) {
+    state.maxPrice = parseInt(e.target.value, 10);
+    document.getElementById("priceRangeValue").textContent = "৳" + state.maxPrice;
+    state.page = 1;
+    render();
+  });
+
+  document.querySelectorAll(".color-filter-dot").forEach(function (dot) {
+    dot.addEventListener("click", function () {
+      dot.classList.toggle("active");
+      var color = dot.dataset.color;
+      var idx = state.colors.indexOf(color);
+      if (idx === -1) state.colors.push(color); else state.colors.splice(idx, 1);
+      state.page = 1;
+      render();
+    });
+  });
+
+  var filterCol = document.getElementById("filterSidebarCol");
+  document.getElementById("mobileFilterToggle").addEventListener("click", function () {
+    filterCol.classList.add("show-mobile");
+    document.body.classList.add("no-scroll");
+  });
+  document.getElementById("closeMobileFilter").addEventListener("click", function () {
+    filterCol.classList.remove("show-mobile");
+    document.body.classList.remove("no-scroll");
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

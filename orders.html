@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order History | AvoraHide</title>
+<meta name="description" content="View your AvoraHide order history and track current orders.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container-xl">
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo">Avora<span>Hide</span></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <div class="dropdown">
+          <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories <i class="bi bi-chevron-down small"></i></a>
+          <ul class="dropdown-menu" id="categoryDropdownMenu"></ul>
+        </div>
+        <a href="shop.html?sort=newest">New Arrivals</a>
+        <a href="shop.html?sort=best-selling">Best Sellers</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="btn-icon-circle js-search-open" aria-label="Search"><i class="bi bi-search"></i></button>
+        <a href="account.html" class="btn-icon-circle" aria-label="Account"><i class="bi bi-person"></i></a>
+        <a href="wishlist.html" class="btn-icon-circle" aria-label="Wishlist"><i class="bi bi-heart"></i><span class="badge-count js-wishlist-count">0</span></a>
+        <a href="cart.html" class="btn-icon-circle" aria-label="Cart"><i class="bi bi-bag"></i><span class="badge-count js-cart-count">0</span></a>
+        <button class="mobile-nav-toggle" aria-label="Open menu"><i class="bi bi-list"></i></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="nav-overlay"></div>
+<div class="mobile-nav-panel">
+  <div class="mnp-head">
+    <span class="brand-logo" style="font-size:1.3rem;">Avora<span>Hide</span></span>
+    <button class="mnp-close btn-icon-circle" aria-label="Close menu"><i class="bi bi-x-lg"></i></button>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="account.html">My Account</a></li>
+    <li><a href="orders.html" class="active">Order History</a></li>
+  </ul>
+</div>
+
+<div class="search-overlay">
+  <button class="search-close" aria-label="Close search"><i class="bi bi-x-lg"></i></button>
+  <div class="search-box">
+    <input type="text" placeholder="Search for wallets, bags, belts..." aria-label="Search products">
+    <div class="search-results"></div>
+  </div>
+</div>
+
+<div class="page-header-banner" style="background-image:url('https://images.unsplash.com/photo-1521223890158-f9f7c3d5d504?auto=format&fit=crop&w=1600&q=70');">
+  <div class="inner">
+    <h1>Order History</h1>
+    <div class="breadcrumb-custom"><a href="index.html">Home</a><span>/</span><a href="account.html">My Account</a><span>/</span><span>Orders</span></div>
+  </div>
+</div>
+
+<section class="section-pad">
+  <div class="container-xl">
+    <div id="orderConfirmBanner" class="checkout-step-box" style="display:none;background:var(--color-cream);border-color:var(--color-cognac);">
+      <h5 class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Order Confirmed</h5>
+      <p class="mb-0">Thank you! Your order <strong id="confirmedOrderId"></strong> has been placed successfully. A confirmation email has been sent to you.</p>
+    </div>
+
+    <div id="ordersListWrap"></div>
+    <div class="empty-state" id="ordersEmptyState" style="display:none;">
+      <i class="bi bi-receipt"></i>
+      <h4>No orders yet</h4>
+      <p>When you place an order, it will appear here for easy tracking.</p>
+      <a href="shop.html" class="btn btn-primary-dark">Start Shopping</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container-xl py-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <span>&copy; 2026 AvoraHide. All rights reserved.</span>
+      <div class="payment-icons"><span><i class="bi bi-credit-card"></i></span><span><i class="bi bi-paypal"></i></span></div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+<div class="toast-stack"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/wishlist.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+(function () {
+  document.getElementById("categoryDropdownMenu").innerHTML = CATEGORIES.map(function (c) {
+    return '<li><a class="dropdown-item" href="category.html?cat=' + c.slug + '">' + c.name + '</a></li>';
+  }).join("");
+
+  var params = new URLSearchParams(window.location.search);
+  var confirmed = params.get("confirmed");
+  if (confirmed) {
+    document.getElementById("orderConfirmBanner").style.display = "block";
+    document.getElementById("confirmedOrderId").textContent = "#" + confirmed;
+  }
+
+  var sampleHistory = [
+    { id: "AVH204981", date: "2026-09-18", status: "delivered", total: "৳214.00", itemImgs: [IMAGES.wallet.thumb, IMAGES.belt.thumb] },
+    { id: "AVH198320", date: "2026-08-02", status: "shipped", total: "৳369.00", itemImgs: [IMAGES.jacketFlat.thumb] },
+    { id: "AVH187552", date: "2026-06-27", status: "cancelled", total: "৳89.00", itemImgs: [IMAGES.wallet.thumb] }
+  ];
+
+  var orders = [];
+  try { var last = JSON.parse(localStorage.getItem("avorahide_last_order")); if (last) orders.push({ id: last.id, date: last.date.slice(0,10), status: "processing", total: last.total, itemImgs: [IMAGES.wallet.thumb] }); } catch (e) {}
+  orders = orders.concat(sampleHistory);
+
+  var statusLabel = { delivered: "Delivered", shipped: "Shipped", processing: "Processing", cancelled: "Cancelled" };
+
+  if (!orders.length) {
+    document.getElementById("ordersEmptyState").style.display = "block";
+  } else {
+    document.getElementById("ordersListWrap").innerHTML = orders.map(function (o) {
+      return '<div class="order-card">' +
+        '<div class="oc-head">' +
+          '<div><strong>Order #' + o.id + '</strong><div class="small text-muted-custom">Placed on ' + new Date(o.date).toLocaleDateString(undefined, {year:"numeric",month:"long",day:"numeric"}) + '</div></div>' +
+          '<span class="order-status status-' + o.status + '">' + statusLabel[o.status] + '</span>' +
+        '</div>' +
+        '<div class="d-flex justify-content-between align-items-center flex-wrap gap-3">' +
+          '<div class="oc-items">' + o.itemImgs.map(function (src) { return '<img src="' + src + '" alt="order item">'; }).join("") + '</div>' +
+          '<div class="text-end"><div class="fw-semibold">' + o.total + '</div><a href="#" class="small text-cognac">View Details</a></div>' +
+        '</div>' +
+      '</div>';
+    }).join("");
+  }
+})();
+</script>
+</body>
+</html>

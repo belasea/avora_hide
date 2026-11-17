@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AvoraHide | Premium Handcrafted Leather Goods</title>
+<meta name="description" content="Discover AvoraHide's premium leather wallets, bags, belts, jackets and accessories — handcrafted for timeless elegance and everyday durability.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- announcement bar -->
+<div class="announcement-bar">
+  <div class="container-xl position-relative">
+    <div class="ann-track">
+      <span class="ann-item"><i class="bi bi-truck"></i> Free Shipping on Orders Over ৳150</span>
+      <span class="ann-item"><i class="bi bi-gift"></i> Complimentary Gift Wrapping Available</span>
+      <span class="ann-item"><i class="bi bi-shield-check"></i> Lifetime Craftsmanship Guarantee</span>
+    </div>
+    <button class="ann-close" aria-label="Close announcement"><i class="bi bi-x-lg"></i></button>
+  </div>
+</div>
+
+<!-- header / nav -->
+<header class="site-header">
+  <div class="container-xl">
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo">Avora<span>Hide</span></a>
+
+      <nav class="main-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="shop.html">Shop</a>
+        <div class="dropdown">
+          <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories <i class="bi bi-chevron-down small"></i></a>
+          <ul class="dropdown-menu" id="categoryDropdownMenu"></ul>
+        </div>
+        <a href="shop.html?sort=newest">New Arrivals</a>
+        <a href="shop.html?sort=best-selling">Best Sellers</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn-icon-circle js-search-open" aria-label="Search"><i class="bi bi-search"></i></button>
+        <a href="account.html" class="btn-icon-circle" aria-label="Account"><i class="bi bi-person"></i></a>
+        <a href="wishlist.html" class="btn-icon-circle" aria-label="Wishlist"><i class="bi bi-heart"></i><span class="badge-count js-wishlist-count">0</span></a>
+        <a href="cart.html" class="btn-icon-circle" aria-label="Cart"><i class="bi bi-bag"></i><span class="badge-count js-cart-count">0</span></a>
+        <button class="mobile-nav-toggle" aria-label="Open menu"><i class="bi bi-list"></i></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- mobile nav drawer -->
+<div class="nav-overlay"></div>
+<div class="mobile-nav-panel">
+  <div class="mnp-head">
+    <span class="brand-logo" style="font-size:1.3rem;">Avora<span>Hide</span></span>
+    <button class="mnp-close btn-icon-circle" aria-label="Close menu"><i class="bi bi-x-lg"></i></button>
+  </div>
+  <ul>
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="shop.html?sort=newest">New Arrivals</a></li>
+    <li><a href="shop.html?sort=best-selling">Best Sellers</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="account.html">My Account</a></li>
+    <li><a href="wishlist.html">Wishlist</a></li>
+    <li><a href="cart.html">Cart</a></li>
+  </ul>
+</div>
+
+<!-- fullscreen search overlay -->
+<div class="search-overlay">
+  <button class="search-close" aria-label="Close search"><i class="bi bi-x-lg"></i></button>
+  <div class="search-box">
+    <input type="text" placeholder="Search for wallets, bags, belts..." aria-label="Search products">
+    <div class="search-results"></div>
+  </div>
+</div>
+
+<!-- hero -->
+<section class="hero-section" style="background-image:url('https://images.unsplash.com/photo-1521223890158-f9f7c3d5d504?auto=format&fit=crop&w=1800&q=80');">
+  <div class="container-xl">
+    <div class="hero-content">
+      <div class="eyebrow">Handcrafted Since Day One</div>
+      <h1>Crafted to Last. Designed to Impress.</h1>
+      <p class="lead-text">Discover timeless leather essentials, thoughtfully crafted for everyday elegance.</p>
+      <div class="hero-btns">
+        <a href="shop.html" class="btn btn-primary-dark">Explore Collection</a>
+        <a href="shop.html?sort=best-selling" class="btn btn-outline-light-custom">Shop Best Sellers</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- featured categories -->
+<section class="section-pad bg-cream">
+  <div class="container-xl">
+    <div class="section-heading text-center">
+      <div class="eyebrow justify-content-center">Shop By Category</div>
+      <h2>Explore Our Collections</h2>
+    </div>
+    <div class="row g-4" id="featuredCategories"></div>
+  </div>
+</section>
+
+<!-- best sellers -->
+<section class="section-pad">
+  <div class="container-xl">
+    <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-5">
+      <div class="section-heading mb-0">
+        <div class="eyebrow">Customer Favorites</div>
+        <h2>Best Sellers</h2>
+      </div>
+      <a href="shop.html?sort=best-selling" class="btn-link-underline">View All <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div class="row g-4" id="bestSellersGrid"></div>
+  </div>
+</section>
+
+<!-- brand story -->
+<section class="section-pad editorial-section">
+  <div class="container-xl">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="editorial-img-wrap" style="aspect-ratio:4/5;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/DFC_4174_A_close-up_of_leather_belts_and_bags_neatly_displayed_at_a_bustling_outdoor_market_stall.jpg/960px-DFC_4174_A_close-up_of_leather_belts_and_bags_neatly_displayed_at_a_bustling_outdoor_market_stall.jpg" alt="Leather craftsmanship at AvoraHide" loading="lazy">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="eyebrow">Our Craft</div>
+        <h2 class="mb-4">Made with Passion. Built for Generations.</h2>
+        <p class="mb-4" style="color:rgba(233,223,210,0.85);">Every AvoraHide piece begins as a full hide, hand-selected for grain and character. Our artisans cut, stitch, and finish each item by hand — a process that trades speed for integrity, so every wallet, bag, and belt you own only gets better with age.</p>
+        <div class="row g-3 mb-4">
+          <div class="col-4"><div class="editorial-stat"><span class="num">15+</span><span class="label">Years Crafting</span></div></div>
+          <div class="col-4"><div class="editorial-stat"><span class="num">40k+</span><span class="label">Happy Customers</span></div></div>
+          <div class="col-4"><div class="editorial-stat"><span class="num">100%</span><span class="label">Genuine Leather</span></div></div>
+        </div>
+        <a href="about.html" class="btn btn-outline-light-custom">Our Story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- new arrivals -->
+<section class="section-pad bg-cream">
+  <div class="container-xl">
+    <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-5">
+      <div class="section-heading mb-0">
+        <div class="eyebrow">Just Landed</div>
+        <h2>New Arrivals</h2>
+      </div>
+      <a href="shop.html?sort=newest" class="btn-link-underline">View All <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div class="row g-4" id="newArrivalsGrid"></div>
+  </div>
+</section>
+
+<!-- why choose us -->
+<section class="section-pad">
+  <div class="container-xl">
+    <div class="section-heading text-center">
+      <div class="eyebrow justify-content-center">Why AvoraHide</div>
+      <h2>Why Choose Us</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-6 col-lg">
+        <div class="feature-item">
+          <div class="feature-icon"><i class="bi bi-gem"></i></div>
+          <h5>Premium Quality Leather</h5>
+          <p>Only full-grain and top-grain hides make the cut.</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg">
+        <div class="feature-item">
+          <div class="feature-icon"><i class="bi bi-scissors"></i></div>
+          <h5>Expert Craftsmanship</h5>
+          <p>Hand-cut, hand-stitched, hand-finished.</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg">
+        <div class="feature-item">
+          <div class="feature-icon"><i class="bi bi-clock-history"></i></div>
+          <h5>Timeless Designs</h5>
+          <p>Pieces built to outlast passing trends.</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg">
+        <div class="feature-item">
+          <div class="feature-icon"><i class="bi bi-shield-lock"></i></div>
+          <h5>Secure Payments</h5>
+          <p>Your checkout is always encrypted and safe.</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg">
+        <div class="feature-item">
+          <div class="feature-icon"><i class="bi bi-box-seam"></i></div>
+          <h5>Reliable Delivery</h5>
+          <p>Carefully packed, tracked door to door.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- testimonials -->
+<section class="section-pad bg-beige">
+  <div class="container-xl">
+    <div class="section-heading text-center">
+      <div class="eyebrow justify-content-center">Customer Stories</div>
+      <h2>What Our Customers Say</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"The Heritage Bifold Wallet looks even better in person. Three years in and the leather has developed the most beautiful patina."</p>
+          <div class="testimonial-author">
+            <div class="avatar">JM</div>
+            <div><div class="name">James M.</div><div class="role">Verified Buyer</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"My Weekender Duffel has been through three countries this year alone. Still looks brand new. Worth every penny."</p>
+          <div class="testimonial-author">
+            <div class="avatar">SR</div>
+            <div><div class="name">Sophia R.</div><div class="role">Verified Buyer</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"Ordered the gift set for my father's birthday. The packaging alone felt premium. He hasn't taken the belt off since."</p>
+          <div class="testimonial-author">
+            <div class="avatar">DK</div>
+            <div><div class="name">David K.</div><div class="role">Verified Buyer</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- newsletter -->
+<section class="section-pad newsletter-section">
+  <div class="container-xl text-center">
+    <div class="eyebrow justify-content-center">Join The List</div>
+    <h2 class="mb-3">Stay Connected with Timeless Style</h2>
+    <p class="text-muted-custom mb-4">Be the first to hear about new arrivals, limited releases, and private sales.</p>
+    <form class="newsletter-form js-newsletter-form">
+      <input type="email" placeholder="Enter your email address" required>
+      <button type="submit" class="btn btn-primary-dark">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- lifestyle gallery -->
+<section class="section-pad">
+  <div class="container-xl">
+    <div class="section-heading text-center">
+      <div class="eyebrow justify-content-center">@avorahide</div>
+      <h2>Follow Our Journey</h2>
+    </div>
+    <div class="row g-2" id="lifestyleGallery"></div>
+  </div>
+</section>
+
+<!-- footer -->
+<footer class="site-footer">
+  <div class="container-xl section-pad">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div class="footer-brand">Avora<span style="color:var(--color-tan);">Hide</span></div>
+        <p>Premium handcrafted leather goods — wallets, bags, belts, jackets and more, made to be lived in and passed on.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+          <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6>Shop</h6>
+        <ul>
+          <li><a href="category.html?cat=wallets">Wallets</a></li>
+          <li><a href="category.html?cat=bags">Bags</a></li>
+          <li><a href="category.html?cat=belts">Belts</a></li>
+          <li><a href="category.html?cat=backpacks">Backpacks</a></li>
+          <li><a href="category.html?cat=accessories">Accessories</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6>Support</h6>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="orders.html">Order Tracking</a></li>
+          <li><a href="terms-conditions.html">Returns &amp; Refunds</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6>Company</h6>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6>Contact</h6>
+        <ul class="footer-contact">
+          <li><i class="bi bi-geo-alt"></i><span>221 Leather Lane, Portland, OR</span></li>
+          <li><i class="bi bi-telephone"></i><span>+1 (503) 555-0142</span></li>
+          <li><i class="bi bi-envelope"></i><span>hello@avorahide.com</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container-xl d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <span>&copy; 2026 AvoraHide. All rights reserved.</span>
+      <div class="payment-icons">
+        <span><i class="bi bi-credit-card"></i></span>
+        <span><i class="bi bi-paypal"></i></span>
+        <span><i class="bi bi-apple"></i></span>
+        <span><i class="bi bi-google"></i></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+<div class="toast-stack"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/wishlist.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("categoryDropdownMenu").innerHTML = CATEGORIES.map(function (c) {
+      return '<li><a class="dropdown-item" href="category.html?cat=' + c.slug + '">' + c.name + '</a></li>';
+    }).join("");
+
+    document.getElementById("featuredCategories").innerHTML = CATEGORIES.slice(0, 5).map(function (c) {
+      return '<div class="col-6 col-md-4 col-lg">' +
+        '<a href="category.html?cat=' + c.slug + '" class="category-card">' +
+          '<img src="' + c.image + '" alt="' + c.name + '" loading="lazy">' +
+          '<div class="cat-label"><h3>' + c.name + '</h3><span class="explore-link">Explore <i class="bi bi-arrow-right"></i></span></div>' +
+        '</a>' +
+      '</div>';
+    }).join("");
+
+    document.getElementById("bestSellersGrid").innerHTML = filterProducts({ sort: "best-selling" }).slice(0, 4).map(function(p){
+      return '<div class="col-6 col-md-3">' + productCardHtml(p) + '</div>';
+    }).join("");
+
+    document.getElementById("newArrivalsGrid").innerHTML = filterProducts({ sort: "newest" }).slice(0, 4).map(function(p){
+      return '<div class="col-6 col-md-3">' + productCardHtml(p) + '</div>';
+    }).join("");
+
+    var galleryImgs = [IMAGES.jacketWorn, IMAGES.duffel, IMAGES.belt, IMAGES.wallet, IMAGES.shoesDerby, IMAGES.market, IMAGES.bolso, IMAGES.jacketFlat];
+    document.getElementById("lifestyleGallery").innerHTML = galleryImgs.map(function (img) {
+      return '<div class="col-6 col-md-3"><div class="gallery-item"><img src="' + img.card + '" alt="AvoraHide lifestyle" loading="lazy"><div class="gi-overlay"><i class="bi bi-instagram"></i></div></div></div>';
+    }).join("");
+  });
+</script>
+</body>
+</html>
