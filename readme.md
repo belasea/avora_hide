@@ -485,8 +485,13 @@ npx serve .
 ```
 
 **Notes:**
+
 - Cart and wishlist data persist in your browser's `localStorage`, scoped to whichever origin you load the site from (`file://`, or `http://localhost:8080`, etc.) — switching how you open the site will reset them.
 - No backend, database, or payment processor is used anywhere in this project; checkout, login, and account pages are fully simulated on the frontend for demonstration purposes.
 - Product photography is sourced from Unsplash and Wikimedia Commons (royalty-free / Creative Commons) for demo purposes.
+
 # avora_hide
+
+# avora_hide
+
 # avora_hide

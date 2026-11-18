@@ -30,11 +30,13 @@ function initHeaderScroll() {
 }
 
 function initMobileNav() {
-  var toggle = document.querySelector(".mobile-nav-toggle");
+  // there are two toggles now — the hamburger in the header and the
+  // "Menu" tab in the mobile bottom bar — both open the same drawer
+  var toggles = document.querySelectorAll(".mobile-nav-toggle");
   var panel = document.querySelector(".mobile-nav-panel");
   var overlay = document.querySelector(".nav-overlay");
   var closeBtn = document.querySelector(".mnp-close");
-  if (!toggle || !panel) return;
+  if (!toggles.length || !panel) return;
 
   function open() {
     panel.classList.add("open");
@@ -46,7 +48,7 @@ function initMobileNav() {
     overlay.classList.remove("show");
     document.body.classList.remove("no-scroll");
   }
-  toggle.addEventListener("click", open);
+  toggles.forEach(function (toggle) { toggle.addEventListener("click", open); });
   if (closeBtn) closeBtn.addEventListener("click", close);
   if (overlay) overlay.addEventListener("click", close);
 }
@@ -119,6 +121,104 @@ function initSearchOverlay() {
   }
 }
 
+function initHeaderSearch() {
+  var input = document.querySelector(".js-header-search-input");
+  var resultsBox = document.querySelector(".header-search-results");
+  if (!input || !resultsBox) return;
+
+  function close() { resultsBox.classList.remove("show"); }
+
+  input.addEventListener("input", function () {
+    var q = input.value.trim();
+    if (!q) { resultsBox.innerHTML = ""; close(); return; }
+    var matches = filterProducts({ search: q }).slice(0, 6);
+    if (!matches.length) {
+      resultsBox.innerHTML = '<p>No products found for "' + q + '"</p>';
+      resultsBox.classList.add("show");
+      return;
+    }
+    var rows = "";
+    for (var i = 0; i < matches.length; i++) {
+      var p = matches[i];
+      rows += '<a href="product-details.html?slug=' + p.slug + '">' +
+        '<img src="' + p.img[0].thumb + '" alt="' + p.name + '">' +
+        '<span><span class="sr-name">' + p.name + '</span><span class="sr-price">' + formatPrice(p.price) + '</span></span>' +
+        '</a>';
+    }
+    resultsBox.innerHTML = rows;
+    resultsBox.classList.add("show");
+  });
+
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && input.value.trim()) {
+      window.location.href = "shop.html?search=" + encodeURIComponent(input.value.trim());
+    } else if (e.key === "Escape") {
+      close();
+      input.blur();
+    }
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest(".header-search")) close();
+  });
+}
+
+function initDesktopSearch() {
+  var input = document.querySelector(".js-desktop-search-input");
+  var resultsBox = document.querySelector(".desktop-search-results");
+  if (!input || !resultsBox) return;
+
+  function close() { resultsBox.classList.remove("show"); }
+
+  input.addEventListener("input", function () {
+    var q = input.value.trim();
+    if (!q) { resultsBox.innerHTML = ""; close(); return; }
+    var matches = filterProducts({ search: q }).slice(0, 6);
+    if (!matches.length) {
+      resultsBox.innerHTML = '<p>No products found for "' + q + '"</p>';
+      resultsBox.classList.add("show");
+      return;
+    }
+    var rows = "";
+    for (var i = 0; i < matches.length; i++) {
+      var p = matches[i];
+      rows += '<a href="product-details.html?slug=' + p.slug + '">' +
+        '<img src="' + p.img[0].thumb + '" alt="' + p.name + '">' +
+        '<span><span class="sr-name">' + p.name + '</span><span class="sr-price">' + formatPrice(p.price) + '</span></span>' +
+        '</a>';
+    }
+    resultsBox.innerHTML = rows;
+    resultsBox.classList.add("show");
+  });
+
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && input.value.trim()) {
+      window.location.href = "shop.html?search=" + encodeURIComponent(input.value.trim());
+    } else if (e.key === "Escape") {
+      close();
+      input.blur();
+    }
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest(".desktop-search")) close();
+  });
+}
+
+function initMegaCategorySearch() {
+  document.querySelectorAll(".js-mega-search").forEach(function (input) {
+    input.addEventListener("input", function () {
+      var panel = input.closest(".mega-panel-inner");
+      var q = input.value.trim().toLowerCase();
+      panel.querySelectorAll(".mega-cat-item").forEach(function (item) {
+        var name = item.querySelector(".mega-cat-name").textContent.toLowerCase();
+        item.classList.toggle("is-hidden", q !== "" && name.indexOf(q) === -1);
+      });
+    });
+    input.addEventListener("click", function (e) { e.stopPropagation(); });
+  });
+}
+
 function initBackToTop() {
   var btn = document.querySelector(".back-to-top");
   if (!btn) return;
@@ -175,9 +275,26 @@ function initGlobalProductActions() {
   });
 }
 
+function initMobileDrawerCategories() {
+  var container = document.getElementById("mobileDrawerCategories");
+  if (!container || typeof CATEGORIES === "undefined") return;
+
+  var html = CATEGORIES.map(function (c) {
+    return '<a href="category.html?cat=' + c.slug + '" class="mnp-category-item">' +
+      '<img src="' + c.image + '" alt="' + c.name + '">' +
+      '<span>' + c.name + '</span>' +
+      '</a>';
+  }).join("");
+
+  container.innerHTML = html;
+}
+
 function markActiveNav() {
+  // .main-nav active state is set per-page in the markup (several nav
+  // links share the same href, e.g. Shop/Men/Women all point to
+  // shop.html, so matching by href here would wrongly light up all of them).
   var page = window.location.pathname.split("/").pop() || "index.html";
-  document.querySelectorAll(".main-nav a, .mobile-nav-panel a").forEach(function (a) {
+  document.querySelectorAll(".mobile-nav-panel a, .bottom-nav a").forEach(function (a) {
     var href = a.getAttribute("href");
     if (href === page || (page === "" && href === "index.html")) {
       a.classList.add("active");
@@ -188,8 +305,12 @@ function markActiveNav() {
 document.addEventListener("DOMContentLoaded", function () {
   initHeaderScroll();
   initMobileNav();
+  initMobileDrawerCategories();
   initAnnouncementBar();
   initSearchOverlay();
+  initHeaderSearch();
+  initDesktopSearch();
+  initMegaCategorySearch();
   initBackToTop();
   initNewsletterForms();
   initGlobalProductActions();

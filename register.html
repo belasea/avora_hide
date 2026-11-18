@@ -13,28 +13,109 @@
 </head>
 <body>
 
+<!-- desktop header (unified header on desktop) -->
+<div class="desktop-header">
+  <div class="container-xl">
+    <div class="desktop-header-inner">
+      <!-- Logo -->
+      <a href="index.html" class="desktop-brand-logo-block">
+        <span class="brand-logo">Avora<span>Hide</span></span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="desktop-main-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="shop.html">Men</a>
+        <a href="shop.html">Women</a>
+        <div class="nav-mega">
+          <a href="#" role="button">Category <i class="bi bi-chevron-down small"></i></a>
+          <div class="mega-panel">
+            <div class="mega-panel-inner">
+              <div class="mega-search">
+                <i class="bi bi-search"></i>
+                <input type="text" class="js-mega-search" placeholder="Search category" autocomplete="off">
+              </div>
+              <div class="mega-grid" id="categoryDropdownMenu"></div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Search and Actions -->
+      <div class="desktop-header-search-actions">
+        <div class="desktop-search">
+          <i class="bi bi-search"></i>
+          <input type="text" class="js-desktop-search-input" placeholder="Search products" aria-label="Search products" autocomplete="off">
+          <div class="desktop-search-results"></div>
+        </div>
+        <div class="desktop-header-actions">
+          <a href="wishlist.html" class="header-icon-link" aria-label="Wishlist"><i class="bi bi-heart"></i><span class="badge-count js-wishlist-count">0</span></a>
+          <a href="cart.html" class="header-icon-link" aria-label="Cart"><i class="bi bi-bag"></i><span class="badge-count js-cart-count">0</span></a>
+          <a href="tel:+15035550142" class="header-icon-link" aria-label="Call us"><i class="bi bi-telephone"></i></a>
+          <a href="login.html" class="btn-sign-in"><span>SIGN IN</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <header class="site-header">
   <div class="container-xl">
     <div class="header-inner">
-      <a href="index.html" class="brand-logo">Avora<span>Hide</span></a>
-      <nav class="main-nav"></nav>
+      <button class="mobile-nav-toggle" aria-label="Open menu"><i class="bi bi-list"></i></button>
+      <a href="index.html" class="brand-logo-block">
+        <span class="brand-logo">Avora<span>Hide</span></span>
+        <span class="brand-tagline">Premium Leather Goods</span>
+      </a>
+      <span class="header-divider"></span>
+
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="shop.html">Men</a>
+        <a href="shop.html">Women</a>
+        <div class="nav-mega">
+          <a href="#" role="button">Category <i class="bi bi-chevron-down small"></i></a>
+          <div class="mega-panel">
+            <div class="mega-panel-inner">
+              <div class="mega-search">
+                <i class="bi bi-search"></i>
+                <input type="text" class="js-mega-search" placeholder="Search category" autocomplete="off">
+              </div>
+              <div class="mega-grid" id="categoryDropdownMenu"></div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
       <div class="header-actions">
-        <a href="index.html" class="btn-link-underline"><i class="bi bi-arrow-left me-2"></i>Back to Store</a>
+        <div class="header-search">
+          <i class="bi bi-search"></i>
+          <input type="text" class="js-header-search-input" placeholder="Search products" aria-label="Search products" autocomplete="off">
+          <div class="header-search-results"></div>
+        </div>
+        <button class="header-icon-link js-search-open" aria-label="Search"><i class="bi bi-search"></i></button>
       </div>
     </div>
   </div>
 </header>
 
-<div class="auth-wrap">
-  <div class="row g-0 w-100">
-    <div class="col-lg-6 d-none d-lg-block">
-      <div class="auth-visual h-100" style="background-image:url('https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=1200&q=80');">
-        <div class="av-content">
-          <div class="eyebrow" style="color:var(--color-tan);">Join AvoraHide</div>
-          <h2 style="color:#fff;">Become part of our story.</h2>
-          <p style="color:rgba(248,245,240,0.85);">Create an account for faster checkout, order tracking, and early access to new releases.</p>
-        </div>
-      </div>
+<!-- mobile nav drawer -->
+<div class="nav-overlay"></div>
+<div class="mobile-nav-panel">
+  <div class="mnp-head">
+    <span class="brand-logo" style="font-size:1.3rem;">Avora<span>Hide</span></span>
+    <button class="mnp-close btn-icon-circle" aria-label="Close menu"><i class="bi bi-x-lg"></i></button>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+  </ul>
+</div>
     </div>
     <div class="col-lg-6">
       <div class="auth-form-col h-100">
